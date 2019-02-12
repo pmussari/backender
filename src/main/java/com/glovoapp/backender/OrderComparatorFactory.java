@@ -9,14 +9,16 @@ import org.springframework.stereotype.Service;
 public class OrderComparatorFactory {
 
 	String[] priorities;
-	
+	double rangeKm;
+
 	public static final String RANGE_CLOSER = "range_closer";
 	public static final String VIP = "vip";
 	public static final String FOOD = "food";
 	public static final String DISTANCE = "distance";
 	
-	public OrderComparatorFactory(@Value("${backender.sortPriorities}") String[] priorities) {
+	public OrderComparatorFactory(@Value("${backender.sortPriorities}") String[] priorities,@Value("${backender.rangeSizeKm}") double rangeKm) {
 		this.priorities = priorities;
+		this.rangeKm = rangeKm;
 	}
 	
 	public Comparator<Order> getComparator(Courier courier) {
@@ -34,7 +36,7 @@ public class OrderComparatorFactory {
 
 	public Comparator<Order> getComparator(String type,Courier courier) {
 		if(OrderComparatorFactory.RANGE_CLOSER.equals(type)) {
-			return new OrderDistanceRangeComparator(courier);
+			return new OrderDistanceRangeComparator(courier,rangeKm);
 		}else if(OrderComparatorFactory.VIP.equals(type)) {
 			return new OrderVIPComparator(courier);
 		}else if(OrderComparatorFactory.FOOD.equals(type)) {

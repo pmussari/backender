@@ -15,7 +15,7 @@ class OrderComparatorFactoryTest {
 	@Test
 	void orderComparatorInstancesTest() {
 		Courier courier = new Courier();
-		OrderComparatorFactory ocFactory = new OrderComparatorFactory(new String[] {""});
+		OrderComparatorFactory ocFactory = new OrderComparatorFactory(new String[] {""},0.5);
 		assertTrue( ocFactory.getComparator(OrderComparatorFactory.RANGE_CLOSER, courier) instanceof OrderDistanceRangeComparator);
 		assertTrue( ocFactory.getComparator(OrderComparatorFactory.VIP, courier) instanceof OrderVIPComparator);
 		assertTrue( ocFactory.getComparator(OrderComparatorFactory.FOOD, courier) instanceof OrderFoodComparator);
@@ -26,7 +26,7 @@ class OrderComparatorFactoryTest {
 	void orderPrioritiesTest() {
 		Courier courier = new Courier();
 		courier.withLocation(new Location(41.403415, 2.150776));
-		OrderComparatorFactory ocFactory = new OrderComparatorFactory(new String[] {OrderComparatorFactory.RANGE_CLOSER,OrderComparatorFactory.VIP,OrderComparatorFactory.FOOD,OrderComparatorFactory.DISTANCE});
+		OrderComparatorFactory ocFactory = new OrderComparatorFactory(new String[] {OrderComparatorFactory.RANGE_CLOSER,OrderComparatorFactory.VIP,OrderComparatorFactory.FOOD,OrderComparatorFactory.DISTANCE},0.5);
 		Comparator<Order> comparator = ocFactory.getComparator(courier);
 		Order order1 = new Order();
 		order1.withPickup(new Location(41.405030, 2.153873));

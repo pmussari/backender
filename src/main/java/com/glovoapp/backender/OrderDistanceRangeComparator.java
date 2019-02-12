@@ -5,10 +5,11 @@ import java.util.Comparator;
 public class OrderDistanceRangeComparator implements Comparator<Order>{
 
 	private Courier courier;
-	private final double rangeKm = 0.5;
+	private double rangeKm;
 	
-	public OrderDistanceRangeComparator(Courier courier) {
+	public OrderDistanceRangeComparator(Courier courier,double rangeKm) {
 		this.courier = courier;
+		this.rangeKm = rangeKm;
 	}
 	
 	

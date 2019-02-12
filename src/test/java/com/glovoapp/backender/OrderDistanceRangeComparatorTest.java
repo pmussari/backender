@@ -14,7 +14,7 @@ class OrderDistanceRangeComparatorTest {
 		order1.withPickup(new Location(41.405986, 2.150078));
 		Order order2 = new Order();
 		order2.withPickup(new Location(41.406414, 2.156512));
-		OrderDistanceRangeComparator oc = new OrderDistanceRangeComparator(courier);
+		OrderDistanceRangeComparator oc = new OrderDistanceRangeComparator(courier,0.5);
 		assertEquals(-1, oc.compare(order1, order2));
 	}
 	
@@ -26,7 +26,7 @@ class OrderDistanceRangeComparatorTest {
 		order1.withPickup(new Location(41.406414, 2.156512));
 		Order order2 = new Order();
 		order2.withPickup(new Location(41.405986, 2.150078));
-		OrderDistanceRangeComparator oc = new OrderDistanceRangeComparator(courier);
+		OrderDistanceRangeComparator oc = new OrderDistanceRangeComparator(courier,0.5);
 		assertEquals(1, oc.compare(order1, order2));
 	}
 	
@@ -38,7 +38,7 @@ class OrderDistanceRangeComparatorTest {
 		order1.withPickup(new Location(41.405030, 2.153873));
 		Order order2 = new Order();
 		order2.withPickup(new Location(41.405532, 2.150562));
-		OrderDistanceRangeComparator oc = new OrderDistanceRangeComparator(courier);
+		OrderDistanceRangeComparator oc = new OrderDistanceRangeComparator(courier,0.5);
 		assertEquals(0, oc.compare(order1, order2));
 	}
 }
